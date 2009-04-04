@@ -1,0 +1,6 @@
+**/*.csproj.user
+*.suo
+**/*.suo
+*/bin
+*/obj
+
