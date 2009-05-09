@@ -293,17 +293,13 @@ namespace FastFingers
         return;
       }
 
-
       // sort the windows by z-order
-
-      SortedList<int, Window> ordered_windows = new SortedList<int, Window>(windows.Count);
-      foreach (Window window in windows.Values)
-      {
-        ordered_windows.Add(window.ZOrder, window);
-      }
+      var sorted = from w in windows.Values
+                   orderby w.ZOrder
+                   select w;
 
       User32.SwitchToThisWindow(desktop_handle, false);
-      foreach (Window window in ordered_windows.Values)
+      foreach (var window in sorted)
       {
         window.Visible = true;
       }
@@ -311,7 +307,9 @@ namespace FastFingers
       if (last_active != null)
       {
         windows.ForegroundWindow = last_active;
+        last_active = null;
       }
+
       windows = null;
     }
 

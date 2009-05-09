@@ -32,6 +32,7 @@ namespace FastFingers.Forms
 
         list_active_windows.Items.Clear();
         list_active_windows.SmallImageList = new ImageList();
+        list_active_windows.SmallImageList.ImageSize = new Size(16, 16);
         if (desktop.Windows != null)
         {
           foreach (Window window in desktop.Windows.Values)

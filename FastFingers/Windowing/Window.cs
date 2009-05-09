@@ -141,6 +141,14 @@ namespace FastFingers
       }
     }
 
+    public System.Diagnostics.Process Process
+    {
+      get
+      {
+        return System.Diagnostics.Process.GetProcessById(ProcessId);
+      }
+    }
+
     public int ProcessId
     {
       get
@@ -161,13 +169,18 @@ namespace FastFingers
     {
       get
       {
-        if (this.module_filename == null)
+        if (module_filename == null)
         {
-          StringBuilder data = new StringBuilder(1024);
-          User32.GetWindowModuleFileName(Handle, data, data.Capacity);
-          this.module_filename = data.ToString();
+          try
+          {
+            module_filename = Process.MainModule.FileName;
+          }
+          catch (Exception)
+          {
+            module_filename = null;
+          }
         }
-        return this.module_filename;
+        return module_filename ?? "<unknown>";
       }
     }
 
@@ -175,15 +188,18 @@ namespace FastFingers
     {
       get
       {
-        if (this.icon == null)
+        if (icon == null)
         {
-          IntPtr icon_handle = User32.GetClassLong(this.Handle, Win32.Constants.GCL_HICONSM);
-          if (icon_handle != IntPtr.Zero)
+          try
           {
-            this.icon = System.Drawing.Icon.FromHandle(icon_handle);
+            icon = System.Drawing.Icon.ExtractAssociatedIcon(ModuleFilename);
+          }
+          catch (Exception)
+          {
+            icon = System.Drawing.SystemIcons.Question;
           }
         }
-        return this.icon == null ? System.Drawing.SystemIcons.Question : this.icon;
+        return icon;
       }
     }
 
@@ -248,6 +264,11 @@ namespace FastFingers
         skip = true;
       }
       else if (lParam == 1 && window.Visible == false)
+      {
+        skip = true;
+      }
+      else if (window.Rect.right - window.Rect.left == 0 
+        || window.Rect.bottom - window.Rect.top == 0)
       {
         skip = true;
       }

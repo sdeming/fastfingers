@@ -72,8 +72,8 @@ namespace FastFingers.Forms
       WindowDictionary windows = WindowDictionary.All;
       foreach (ListViewItem item in windows_view.CheckedItems)
       {
-        int hWnd = int.Parse(item.Text);
-        if (windows.ContainsKey(hWnd))
+        int hWnd = 0;
+        if (int.TryParse(item.Text, out hWnd) && windows.ContainsKey(hWnd))
         {
           Window window = windows[hWnd];
           Win32.RECT rect = new Win32.RECT();
