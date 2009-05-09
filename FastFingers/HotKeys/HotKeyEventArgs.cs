@@ -4,19 +4,19 @@ using System.Text;
 
 namespace FastFingers.HotKeys
 {
-    class HotKeyEventArgs : EventArgs
+  class HotKeyEventArgs : EventArgs
+  {
+    private HotKey key;
+
+    public HotKey Key
     {
-        private HotKey key;
-
-        public HotKey Key
-        {
-            get { return key; }
-        }
-
-        public HotKeyEventArgs(HotKey key)
-            : base()
-        {
-            this.key = key;
-        }
+      get { return key; }
     }
+
+    public HotKeyEventArgs(HotKey key)
+      : base()
+    {
+      this.key = key;
+    }
+  }
 }

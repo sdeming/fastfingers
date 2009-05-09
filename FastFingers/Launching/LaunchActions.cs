@@ -4,41 +4,41 @@ using System.Text;
 
 namespace FastFingers.Launching
 {
-    public interface ILaunchAction
+  public interface ILaunchAction
+  {
+    bool DoAction();
+    bool UndoAction();
+  }
+
+  public class Execute : ILaunchAction
+  {
+    private ILaunchable target;
+    private string arguments;
+
+    public Execute(ILaunchable target, string arguments)
     {
-        bool DoAction();
-        bool UndoAction();
+      this.target = target;
+      this.arguments = arguments;
     }
 
-    public class Execute : ILaunchAction
+    public bool DoAction()
     {
-        private ILaunchable target;
-        private string arguments;
+      try
+      {
+        System.Diagnostics.Process process = System.Diagnostics.Process.Start(target.FullName, arguments);
+      }
+      catch (Exception)
+      {
+        return false;
+      }
 
-        public Execute(ILaunchable target, string arguments)
-        {
-            this.target = target;
-            this.arguments = arguments;
-        }
-        
-        public bool DoAction()
-        {
-            try
-            {
-                System.Diagnostics.Process process = System.Diagnostics.Process.Start(target.FullName, arguments);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool UndoAction()
-        {
-            return true;
-        }
+      return true;
     }
+
+    public bool UndoAction()
+    {
+      return true;
+    }
+  }
 
 }
