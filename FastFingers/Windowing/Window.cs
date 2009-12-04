@@ -28,7 +28,7 @@ namespace FastFingers
     {
       this.handle = handle;
       this.z_order = z_order;
-      this.thread_id = User32.GetWindowThreadProcessId(this.handle, out this.process_id);
+      this.thread_id = User32.GetWindowThreadProcessId((IntPtr)this.handle, out this.process_id);
       this.window_rect = new RECT();
       this.sticky = false;
       this.module_filename = null;

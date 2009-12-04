@@ -78,8 +78,8 @@ namespace FastFingers.Forms
         System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(30));
         Opacity -= 0.1;
       }
-      Hide();
       Opacity = op;
+      Hide();
     }
 
     private void fader_timer_Tick(object sender, EventArgs e)
@@ -100,8 +100,8 @@ namespace FastFingers.Forms
     protected override void OnClosing(CancelEventArgs e)
     {
       base.OnClosing(e);
-      e.Cancel = true;
-      Hide();
+      //e.Cancel = true;
+      //Hide();
     }
   }
 }

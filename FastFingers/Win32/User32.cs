@@ -21,7 +21,7 @@ namespace FastFingers.Win32
 
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-    public static extern int GetWindowThreadProcessId(int hWnd, out int processId);
+    public static extern int GetWindowThreadProcessId(IntPtr hWnd, out int processId);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern void GetWindowText(int hWnd, StringBuilder s, int nMaxCount);
@@ -46,6 +46,15 @@ namespace FastFingers.Win32
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern int GetDesktopWindow();
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+    public static extern IntPtr FindWindow(string strClassName, string strWindowName);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+    public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+    public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, IntPtr className, string windowTitle);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern int SetSysColors(int changes, ref int lpSysColor, ref int lpColorValues);

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 using FastFingers.Win32;
 
@@ -129,7 +130,26 @@ namespace FastFingers
       this.ignore_list = new VirtualDesktopRuleset();
       AddIgnoreRule("", User32.GetDesktopWindow(), 0, true);
       AddIgnoreRule("", User32.GetShellWindow(), 0, true);
+      
+      // add the start button
+      var start_button_window = User32.FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xc017, "Start");
+      AddIgnoreRule("", start_button_window, 0, true);
 
+      // add the entire sidebar process
+      var sidebar_process = from p in Process.GetProcesses()
+                            where p.ProcessName == "sidebar" &&
+                                  p.MainModule.FileName.EndsWith(@"Windows Sidebar\sidebar.exe")
+                            select p;
+      sidebar_process.ToList().ForEach((p) => AddIgnoreRule("", 0, p.Id, true));
+
+      // add rocketdock
+      var rocketdock_process = from p in Process.GetProcesses()
+                               where p.ProcessName == "RocketDock" &&
+                                     p.MainModule.FileName.EndsWith(@"\RocketDock.exe")
+                               select p;
+      rocketdock_process.ToList().ForEach((p) => AddIgnoreRule("", 0, p.Id, true));
+
+      // create our virtual desktops
       for (int x = 0; x < count; x++)
       {
         this.Add(new VirtualDesktop(x, string.Format("Virtual Desktop #{0}", x)));

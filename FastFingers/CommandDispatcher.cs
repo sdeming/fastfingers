@@ -18,7 +18,7 @@ namespace FastFingers
   {
     private Forms.Setup setup_form;
     private Forms.ActiveWindows active_windows_form;
-    private Forms.Launcher launcher_form;
+    //private Forms.Launcher launcher_form;
 
     private VirtualDesktopList desktops;
     private VirtualDesktop current_desktop;
