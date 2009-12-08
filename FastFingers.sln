@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFingers", "FastFingers\FastFingers.csproj", "{EB6EE33D-FA50-438B-9047-01B2ACDF32B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinCore", "WinCore\WinCore.csproj", "{6AB96357-A315-4F54-87F9-704DD220A331}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,18 @@ Global
 		{EB6EE33D-FA50-438B-9047-01B2ACDF32B4}.Release|x64.Build.0 = Release|x64
 		{EB6EE33D-FA50-438B-9047-01B2ACDF32B4}.Release|x86.ActiveCfg = Release|x86
 		{EB6EE33D-FA50-438B-9047-01B2ACDF32B4}.Release|x86.Build.0 = Release|x86
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Documentation|x64.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Documentation|x86.ActiveCfg = Debug|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Release|x64.ActiveCfg = Release|Any CPU
+		{6AB96357-A315-4F54-87F9-704DD220A331}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-using FastFingers.Win32;
+using WinCore.Win32;
 
 namespace FastFingers
 {
@@ -44,7 +43,7 @@ namespace FastFingers
     /// </summary>
     public int Handle { get { return handle; } }
 
-    public Win32.RECT Rect
+    public RECT Rect
     {
       get
       {

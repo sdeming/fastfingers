@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.IO;
-
-using FastFingers.Win32;
 using FastFingers.Configuration;
+using WinCore.Win32;
 
 namespace FastFingers.Launching
 {

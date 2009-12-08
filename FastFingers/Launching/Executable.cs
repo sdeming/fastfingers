@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using FastFingers.Win32;
+using WinCore.Win32;
 
 namespace FastFingers.Launching
 {

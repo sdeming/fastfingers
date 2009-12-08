@@ -36,7 +36,7 @@ namespace FastFingers.Forms
       get
       {
         System.Windows.Forms.CreateParams p = base.CreateParams;
-        p.ExStyle |= (int)Win32.ExStyles.WS_EX_TRANSPARENT;
+        p.ExStyle |= (int)WinCore.Win32.ExStyles.WS_EX_TRANSPARENT;
         return p;
       }
     }

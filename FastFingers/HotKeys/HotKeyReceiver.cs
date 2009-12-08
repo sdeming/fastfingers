@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
-
-using FastFingers.Win32;
+using WinCore.Win32;
 
 namespace FastFingers.HotKeys
 {

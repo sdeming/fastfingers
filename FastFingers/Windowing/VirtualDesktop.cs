@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-
-using FastFingers.Win32;
+using WinCore.Win32;
 
 namespace FastFingers
 {

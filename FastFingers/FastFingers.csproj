@@ -198,11 +198,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Win32\Kernel32.cs" />
-    <Compile Include="Win32\Shell32.cs" />
-    <Compile Include="Win32\User32.cs" />
     <Compile Include="Windowing\VirtualDesktop.cs" />
-    <Compile Include="Win32\Win32.cs" />
     <Compile Include="Windowing\Window.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +225,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinCore\WinCore.csproj">
+      <Project>{6AB96357-A315-4F54-87F9-704DD220A331}</Project>
+      <Name>WinCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

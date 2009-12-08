@@ -7,10 +7,10 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Reflection;
+using WinCore.Win32;
 
 using FastFingers.Configuration;
 using FastFingers.HotKeys;
-using FastFingers.Win32;
 
 namespace FastFingers
 {

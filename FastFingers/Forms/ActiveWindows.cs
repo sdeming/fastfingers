@@ -69,14 +69,14 @@ namespace FastFingers.Forms
 
     private void bring_in_button_Click(object sender, EventArgs e)
     {
-      WindowDictionary windows = WindowDictionary.All;
+      var windows = WindowDictionary.All;
       foreach (ListViewItem item in windows_view.CheckedItems)
       {
         int hWnd = 0;
         if (int.TryParse(item.Text, out hWnd) && windows.ContainsKey(hWnd))
         {
-          Window window = windows[hWnd];
-          Win32.RECT rect = new Win32.RECT();
+          var window = windows[hWnd];
+          var rect = new WinCore.Win32.RECT();
           rect.left = 0;
           rect.top = 0;
           rect.right = 0 + window.Width;
