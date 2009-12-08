@@ -13,12 +13,9 @@ namespace WinCore.Win32
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern bool UnregisterHotKey(int hWnd, int id);
 
-
-
     public delegate bool EnumWindowsCallBack(int hWnd, int lParam);
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern int EnumWindows(EnumWindowsCallBack x, int y);
-
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern int GetWindowThreadProcessId(IntPtr hWnd, out int processId);
@@ -59,13 +56,8 @@ namespace WinCore.Win32
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern int SetSysColors(int changes, ref int lpSysColor, ref int lpColorValues);
 
-
-
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern IntPtr PostMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-
-
-
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern IntPtr GetForegroundWindow();
@@ -97,7 +89,7 @@ namespace WinCore.Win32
     [DllImport("User32", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     private static extern int SetWindowLong(IntPtr hWnd, int Index, int Value);
 
-
+    // Windows hook
     public delegate int WindowsHookCallback(int nCode, IntPtr wParam, IntPtr lParam);
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern Int32 SetWindowsHookEx(int hook_id, WindowsHookCallback lpfn, IntPtr hInstance, int threadId);

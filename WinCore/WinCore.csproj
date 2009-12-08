@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\SystemPath.cs" />
     <Compile Include="Win32\Kernel32.cs" />
     <Compile Include="Win32\Shell32.cs" />
     <Compile Include="Win32\User32.cs" />

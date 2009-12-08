@@ -145,7 +145,6 @@
     </Compile>
     <Compile Include="Launching\LauncherIndex.cs">
     </Compile>
-    <Compile Include="SystemPath.cs" />
     <Compile Include="Forms\Setup.cs">
       <SubType>Form</SubType>
     </Compile>

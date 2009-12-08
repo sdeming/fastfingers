@@ -149,7 +149,7 @@ namespace FastFingers.Launching
       AddPath(string.Format(System.Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)));
 
       // parse the PATH environment variable and add each entry
-      foreach (string entry in new SystemPath())
+      foreach (string entry in new WinCore.Sys.SystemPath())
       {
         AddPath(entry);
       }

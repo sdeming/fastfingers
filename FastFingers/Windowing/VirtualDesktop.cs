@@ -11,41 +11,17 @@ namespace FastFingers
 
   public class VirtualDesktopRule
   {
-    string title;
-    int handle;
-    int pid;
-    bool protect;
+    public string Title { get; set; }
+    public int Handle { get; set; }
+    public int ProcessId { get; set; }
+    public bool Protect { get; set; }
 
-    public VirtualDesktopRule(string title, int handle, int pid, bool protect)
+    public VirtualDesktopRule()
     {
-      this.title = title;
-      this.handle = handle;
-      this.pid = pid;
-      this.protect = protect;
-    }
-
-    public string Title
-    {
-      get { return title; }
-      set { title = value; }
-    }
-
-    public int Handle
-    {
-      get { return handle; }
-      set { handle = value; }
-    }
-
-    public int ProcessId
-    {
-      get { return pid; }
-      set { pid = value; }
-    }
-
-    public bool Protect
-    {
-      get { return protect; }
-      set { protect = value; }
+      Title = "";
+      Handle = 0;
+      ProcessId = 0;
+      Protect = true;
     }
   }
 
@@ -58,9 +34,14 @@ namespace FastFingers
 
     public void Add(string title, int handle, int pid, bool protect)
     {
-      Add(new VirtualDesktopRule(title, handle, pid, protect));
+      Add(new VirtualDesktopRule()
+      {
+        Title = title,
+        Handle = handle,
+        ProcessId = pid,
+        Protect = protect
+      });
     }
-
 
     public VirtualDesktopRule Find(int handle, string title, int pid)
     {
@@ -198,12 +179,12 @@ namespace FastFingers
 
     public void AddIgnoreRule(string title, int handle, int pid, bool protect)
     {
-      AddIgnoreRule(new VirtualDesktopRule(title, handle, pid, protect));
+      AddIgnoreRule(new VirtualDesktopRule() { Title = title, Handle = handle, ProcessId = pid, Protect = protect });
     }
 
     public void AddIgnoreRule(string title, IntPtr handle, int pid, bool protect)
     {
-      AddIgnoreRule(new VirtualDesktopRule(title, (int)handle, pid, protect));
+      AddIgnoreRule(new VirtualDesktopRule() { Title = title, Handle = (int)handle, ProcessId = pid, Protect = protect });
     }
 
     public bool RemoveIgnoreRule(VirtualDesktopRule rule)

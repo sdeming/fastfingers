@@ -15,7 +15,7 @@ namespace FastFingers
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
 
-      CommandDispatcher dispatcher = new CommandDispatcher();
+      var dispatcher = new CommandDispatcher();
 
       try
       {
