@@ -35,7 +35,7 @@ namespace FastFingers.Forms
         list_active_windows.SmallImageList.ImageSize = new Size(16, 16);
         if (desktop.Windows != null)
         {
-          foreach (Window window in desktop.Windows.Values)
+          foreach (Window window in desktop.Windows.StillActive.Values)
           {
             list_active_windows.SmallImageList.Images.Add(window.ProcessId.ToString(), window.Icon);
             list_active_windows.Items.Add(new ListViewItem(window.Title, window.ProcessId.ToString()));

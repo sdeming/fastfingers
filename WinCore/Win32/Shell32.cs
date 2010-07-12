@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace WinCore.Win32
 {
-  public partial class Shell32
+  public static class Shell32
   {
     [StructLayout(LayoutKind.Sequential)]
     public struct SHFILEINFO

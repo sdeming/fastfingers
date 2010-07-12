@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using WinCore.Win32;
@@ -73,12 +72,7 @@ namespace FastFingers
     public bool Remove(int handle, string title, int pid)
     {
       VirtualDesktopRule rule = Find(handle, title, pid);
-      if (rule == null)
-      {
-        return false;
-      }
-
-      if (rule.Protect)
+      if (rule == null || rule.Protect)
       {
         return false;
       }

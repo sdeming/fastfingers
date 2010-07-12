@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WinCore.Win32;
 
@@ -7,13 +8,8 @@ namespace FastFingers
 {
   public class Window
   {
-    private int handle;
     private RECT window_rect;
     private bool sticky;
-    private int z_order;
-    private int process_id;
-    private int thread_id;
-    private string class_name;
     private string module_filename;
     private System.Drawing.Icon icon;
 
@@ -25,23 +21,39 @@ namespace FastFingers
 
     public Window(int handle, int z_order)
     {
-      this.handle = handle;
-      this.z_order = z_order;
-      this.thread_id = User32.GetWindowThreadProcessId((IntPtr)this.handle, out this.process_id);
+      int pid;
+      this.Handle = handle;
+      this.ZOrder = z_order;
+
+      ThreadId = User32.GetWindowThreadProcessId((IntPtr)Handle, out pid);
+      ProcessId = pid;
+
       this.window_rect = new RECT();
       this.sticky = false;
       this.module_filename = null;
       this.icon = null;
 
-      StringBuilder data = new StringBuilder(1024);
+      var data = new StringBuilder(1024);
       User32.GetClassName(Handle, data, data.Capacity);
-      this.class_name = data.ToString();
+      this.Class = data.ToString();
     }
 
     /// <summary>
     /// Get the window handle.
     /// </summary>
-    public int Handle { get { return handle; } }
+    public int Handle { get; private set; }
+    public int ZOrder { get; private set; }
+
+    public int Left { get { return Rect.left; } }
+    public int Top { get { return Rect.top; } }
+    public int Right { get { return Rect.right; } }
+    public int Bottom { get { return Rect.bottom; } }
+    public int Width { get { return Rect.right - Rect.left; } }
+    public int Height { get { return Rect.bottom - Rect.top; } }
+
+    public int ProcessId { get; private set; }
+    public int ThreadId { get; private set; }
+    public string Class { get; private set; }
 
     public RECT Rect
     {
@@ -60,62 +72,6 @@ namespace FastFingers
       }
     }
 
-    public int Left
-    {
-      get
-      {
-        return Rect.left;
-      }
-    }
-
-    public int Top
-    {
-      get
-      {
-        return Rect.top;
-      }
-    }
-
-    public int Right
-    {
-      get
-      {
-        return Rect.right;
-      }
-    }
-
-    public int Bottom
-    {
-      get
-      {
-        return Rect.bottom;
-      }
-    }
-
-    public int Width
-    {
-      get
-      {
-        return Rect.right - Rect.left;
-      }
-    }
-
-    public int Height
-    {
-      get
-      {
-        return Rect.bottom - Rect.top;
-      }
-    }
-
-    public int ZOrder
-    {
-      get
-      {
-        return z_order;
-      }
-    }
-
     /// <summary>
     /// Get the window title.
     /// </summary>
@@ -123,20 +79,9 @@ namespace FastFingers
     {
       get
       {
-        StringBuilder data = new StringBuilder(256);
+        var data = new StringBuilder(256);
         User32.GetWindowText(Handle, data, data.Capacity);
         return data.ToString();
-      }
-    }
-
-    /// <summary>
-    /// Get the class name.
-    /// </summary>
-    public string Class
-    {
-      get
-      {
-        return this.class_name;
       }
     }
 
@@ -145,22 +90,6 @@ namespace FastFingers
       get
       {
         return System.Diagnostics.Process.GetProcessById(ProcessId);
-      }
-    }
-
-    public int ProcessId
-    {
-      get
-      {
-        return this.process_id;
-      }
-    }
-
-    public int ThreadId
-    {
-      get
-      {
-        return this.thread_id;
       }
     }
 
@@ -247,6 +176,15 @@ namespace FastFingers
       }
     }
 
+    public int Style
+    {
+      get { return User32.GetWindowLong((IntPtr)Handle, User32.GWL_STYLE); }
+    }
+
+    public bool StillActive
+    {
+      get { return User32.IsWindow((IntPtr)Handle); }
+    }
   } // class Window
 
 
@@ -254,28 +192,20 @@ namespace FastFingers
   {
     private bool EnumWindowCallBack(int hWnd, int lParam)
     {
-      int z_order = this.Count;
-      Window window = new Window(hWnd, z_order);
-      bool skip = false;
+      var z = this.Count;
+      var window = new Window(hWnd, z);
 
-      if (window.Title.Length == 0)
-      {
-        skip = true;
-      }
-      else if (lParam == 1 && window.Visible == false)
-      {
-        skip = true;
-      }
-      else if (window.Rect.right - window.Rect.left == 0 
-        || window.Rect.bottom - window.Rect.top == 0)
-      {
-        skip = true;
-      }
+      var skip = (false // window.Title.Length == 0
+                  || (lParam == 1 && !window.Visible)                                                          // is not visible
+                  || (lParam == 1 && ((window.Style & User32.TARGETWINDOW) != User32.TARGETWINDOW))            // is not a target window
+                  || (window.Rect.right - window.Rect.left == 0 || window.Rect.bottom - window.Rect.top == 0)) // has 0 width or height
+                  ;
 
       if (!skip)
       {
-        this.Add(hWnd, new Window(hWnd, z_order));
+        this.Add(hWnd, window);
       }
+
       return true;
     }
 
@@ -332,7 +262,22 @@ namespace FastFingers
 
       set
       {
-        User32.SwitchToThisWindow(value.Handle, false);
+        User32.SwitchToThisWindow(value.Handle, true);
+      }
+    }
+
+    public WindowDictionary StillActive
+    {
+      get
+      {
+        this.ToList().ForEach((pair) =>
+        {
+          if (!pair.Value.StillActive)
+          {
+            this.Remove(pair.Key);
+          }
+        });
+        return this;
       }
     }
   } // class WindowDictionary

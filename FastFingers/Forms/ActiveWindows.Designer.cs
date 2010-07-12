@@ -38,13 +38,14 @@ namespace FastFingers.Forms
           this.refresh_all_button = new System.Windows.Forms.Button();
           this.toggle_button = new System.Windows.Forms.Button();
           this.windows_view = new System.Windows.Forms.ListView();
-          this.title_column = new System.Windows.Forms.ColumnHeader();
-          this.handle_column = new System.Windows.Forms.ColumnHeader();
-          this.pid_column = new System.Windows.Forms.ColumnHeader();
-          this.file_column = new System.Windows.Forms.ColumnHeader();
-          this.visible_column = new System.Windows.Forms.ColumnHeader();
-          this.dimensions_column = new System.Windows.Forms.ColumnHeader();
-          this.z_order_column = new System.Windows.Forms.ColumnHeader();
+          this.title_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.handle_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.pid_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.file_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.visible_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.dimensions_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.z_order_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+          this.class_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
           this.title_panel.SuspendLayout();
           this.actions_panel.SuspendLayout();
           this.action_buttons_justifier_panel.SuspendLayout();
@@ -59,7 +60,7 @@ namespace FastFingers.Forms
           this.title_panel.Dock = System.Windows.Forms.DockStyle.Top;
           this.title_panel.Location = new System.Drawing.Point(0, 0);
           this.title_panel.Name = "title_panel";
-          this.title_panel.Size = new System.Drawing.Size(813, 48);
+          this.title_panel.Size = new System.Drawing.Size(914, 48);
           this.title_panel.TabIndex = 5;
           // 
           // dialog_title_label
@@ -81,7 +82,7 @@ namespace FastFingers.Forms
           this.actions_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
           this.actions_panel.Location = new System.Drawing.Point(0, 333);
           this.actions_panel.Name = "actions_panel";
-          this.actions_panel.Size = new System.Drawing.Size(813, 48);
+          this.actions_panel.Size = new System.Drawing.Size(914, 48);
           this.actions_panel.TabIndex = 6;
           // 
           // action_buttons_justifier_panel
@@ -93,13 +94,13 @@ namespace FastFingers.Forms
           this.action_buttons_justifier_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
           this.action_buttons_justifier_panel.Location = new System.Drawing.Point(0, 0);
           this.action_buttons_justifier_panel.Name = "action_buttons_justifier_panel";
-          this.action_buttons_justifier_panel.Size = new System.Drawing.Size(809, 44);
+          this.action_buttons_justifier_panel.Size = new System.Drawing.Size(910, 44);
           this.action_buttons_justifier_panel.TabIndex = 2;
           // 
           // refresh_visible_button
           // 
           this.refresh_visible_button.Anchor = System.Windows.Forms.AnchorStyles.Right;
-          this.refresh_visible_button.Location = new System.Drawing.Point(680, 11);
+          this.refresh_visible_button.Location = new System.Drawing.Point(781, 11);
           this.refresh_visible_button.Name = "refresh_visible_button";
           this.refresh_visible_button.Size = new System.Drawing.Size(55, 23);
           this.refresh_visible_button.TabIndex = 3;
@@ -121,7 +122,7 @@ namespace FastFingers.Forms
           // refresh_all_button
           // 
           this.refresh_all_button.Anchor = System.Windows.Forms.AnchorStyles.Right;
-          this.refresh_all_button.Location = new System.Drawing.Point(741, 11);
+          this.refresh_all_button.Location = new System.Drawing.Point(842, 11);
           this.refresh_all_button.Name = "refresh_all_button";
           this.refresh_all_button.Size = new System.Drawing.Size(55, 23);
           this.refresh_all_button.TabIndex = 1;
@@ -149,6 +150,7 @@ namespace FastFingers.Forms
             this.handle_column,
             this.pid_column,
             this.file_column,
+            this.class_column,
             this.visible_column,
             this.dimensions_column,
             this.z_order_column});
@@ -158,7 +160,7 @@ namespace FastFingers.Forms
           this.windows_view.Location = new System.Drawing.Point(0, 48);
           this.windows_view.MultiSelect = false;
           this.windows_view.Name = "windows_view";
-          this.windows_view.Size = new System.Drawing.Size(813, 285);
+          this.windows_view.Size = new System.Drawing.Size(914, 285);
           this.windows_view.TabIndex = 7;
           this.windows_view.UseCompatibleStateImageBehavior = false;
           this.windows_view.View = System.Windows.Forms.View.Details;
@@ -184,23 +186,31 @@ namespace FastFingers.Forms
           // 
           // visible_column
           // 
+          this.visible_column.DisplayIndex = 4;
           this.visible_column.Text = "Visible";
-          this.visible_column.Width = 46;
+          this.visible_column.Width = 52;
           // 
           // dimensions_column
           // 
+          this.dimensions_column.DisplayIndex = 5;
           this.dimensions_column.Text = "Dimensions";
           this.dimensions_column.Width = 131;
           // 
           // z_order_column
           // 
+          this.z_order_column.DisplayIndex = 6;
           this.z_order_column.Text = "~Z-Order";
+          // 
+          // class_column
+          // 
+          this.class_column.Text = "Class";
+          this.class_column.Width = 87;
           // 
           // ActiveWindows
           // 
           this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
           this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-          this.ClientSize = new System.Drawing.Size(813, 381);
+          this.ClientSize = new System.Drawing.Size(914, 381);
           this.ControlBox = false;
           this.Controls.Add(this.windows_view);
           this.Controls.Add(this.actions_panel);
@@ -237,5 +247,6 @@ namespace FastFingers.Forms
         private System.Windows.Forms.Button refresh_visible_button;
         private System.Windows.Forms.ColumnHeader pid_column;
         private System.Windows.Forms.ColumnHeader file_column;
+        private System.Windows.Forms.ColumnHeader class_column;
     }
 }

@@ -36,6 +36,7 @@ namespace FastFingers.Forms
         item.SubItems.Add(window.Handle.ToString());
         item.SubItems.Add(window.ProcessId.ToString());
         item.SubItems.Add(window.ModuleFilename);
+        item.SubItems.Add(window.Class);
         item.SubItems.Add(window.Visible ? "Yes" : "No");
         item.SubItems.Add(dimensions);
         item.SubItems.Add(window.ZOrder.ToString());
