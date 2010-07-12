@@ -105,6 +105,10 @@ namespace FastFingers
       AddIgnoreRule("", User32.GetDesktopWindow(), 0, true);
       AddIgnoreRule("", User32.GetShellWindow(), 0, true);
       
+      // add the windows 7 task bar
+      var task_bar_window = User32.FindWindow("Shell_TrayWnd", "");
+      AddIgnoreRule("", task_bar_window, 0, true);
+
       // add the start button
       var start_button_window = User32.FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xc017, "Start");
       AddIgnoreRule("", start_button_window, 0, true);

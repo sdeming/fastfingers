@@ -197,7 +197,7 @@ namespace FastFingers
 
       var skip = (false // window.Title.Length == 0
                   || (lParam == 1 && !window.Visible)                                                          // is not visible
-                  || (lParam == 1 && ((window.Style & User32.TARGETWINDOW) != User32.TARGETWINDOW))            // is not a target window
+                  //|| (lParam == 1 && ((window.Style & User32.TARGETWINDOW) != User32.TARGETWINDOW))            // is not a target window
                   || (window.Rect.right - window.Rect.left == 0 || window.Rect.bottom - window.Rect.top == 0)) // has 0 width or height
                   ;
 
